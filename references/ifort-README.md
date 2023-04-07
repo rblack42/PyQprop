@@ -1,0 +1,1 @@
+GettingStarted link: https://software.intel.com/content/www/us/en/develop/documentation/get-started-with-fortran-compiler-macos/top.html

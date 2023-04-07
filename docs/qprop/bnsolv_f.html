@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>bnsolv.f &#8212; PyQpro</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'qprop/bnsolv_f';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="../bibliography.html" />
+    <link rel="prev" title="io.f" href="io_f.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/lpp.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/lpp.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Refactoring Mark Drela’s Tools
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="qprop.html">QPROP: Propeller Analysis Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop-algorithms.html">QProp Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop_f.html">qprop.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qcget_f.html">qcget.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tqcalc_f.html">tqcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdfun_f.html">cdfun.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gvcalc_f.html">gvcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spline_f.html">spline.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_f.html">io.f</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">bnsolv.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela/issues/new?title=Issue%20on%20page%20%2Fqprop/bnsolv_f.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/qprop/bnsolv_f.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>bnsolv.f</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="bnsolv-f">
+<h1>bnsolv.f<a class="headerlink" href="#bnsolv-f" title="Permalink to this heading">#</a></h1>
+<p>This routine is basically just a block tridagonal solver. The algorithms are
+described in many textbooks and articles found online <span id="id1">[varah1972]</span>.</p>
+<div class="highlight-fortranfixed notranslate"><div class="highlight"><pre><span></span><span class="c">C***********************************************************************</span>
+<span class="c">C    Module:  bnsolv.f</span>
+<span class="c">C </span>
+<span class="c">C    Copyright (C) 2005 Mark Drela </span>
+<span class="c">C </span>
+<span class="c">C    This program is free software; you can redistribute it and/or modify</span>
+<span class="c">C    it under the terms of the GNU General Public License as published by</span>
+<span class="c">C    the Free Software Foundation; either version 2 of the License, or</span>
+<span class="c">C    (at your option) any later version.</span>
+<span class="c">C</span>
+<span class="c">C    This program is distributed in the hope that it will be useful,</span>
+<span class="c">C    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">C    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">C    GNU General Public License for more details.</span>
+<span class="c">C</span>
+<span class="c">C    You should have received a copy of the GNU General Public License</span>
+<span class="c">C    along with this program; if not, write to the Free Software</span>
+<span class="c">C    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</span>
+<span class="c">C***********************************************************************</span>
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">BNSOLV</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">NRHS</span><span class="p">,</span><span class="n">NRMAX</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">A</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NRMAX</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C     **********************************************************************</span>
+<span class="c">C      This routine solves an N-long block-tridiagonal system with NBxNB</span>
+<span class="c">C      blocks, and with NRHS righthand sides by a standard block elimination</span>
+<span class="c">C      scheme.  The solutions are returned in the Rj vectors.</span>
+<span class="c">C</span>
+<span class="c">C      |A C      ||d|   |R..   |</span>
+<span class="c">C      |B A C    ||d|   |R..   |</span>
+<span class="c">C      |  B . .  ||.| = |R.....|</span>
+<span class="c">C      |    . . C||.|   |R..   |</span>
+<span class="c">C      |      B A||d|   |R..   |</span>
+<span class="c">C                                                  Mark Drela   10 June 89</span>
+<span class="c">C     **********************************************************************</span>
+<span class="c">C</span>
+<span class="c">CCC** Forward sweep: Elimination of lower block diagonal (B&#39;s).</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">IM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="o">-</span><span class="mi">1</span>
+<span class="c">C</span>
+<span class="c">C------ don&#39;t eliminate first B block because it doesn&#39;t exist</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">12</span>
+<span class="c">C</span>
+<span class="c">C------ eliminate Bi block, thus modifying Ai and Ci blocks</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">11</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">111</span><span class="w"> </span><span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">BTMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1111</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">BTMP</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IM</span><span class="p">)</span>
+<span class="nl"> 1111</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1112</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">BTMP</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IM</span><span class="p">)</span>
+<span class="nl"> 1112</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">  111</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="nl">   11</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C                                                              -1</span>
+<span class="c">CCC---- multiply Ci block and righthand side Ri vectors by (Ai)</span>
+<span class="c">C       using Gaussian elimination.</span>
+<span class="c">C</span>
+<span class="nl">   12</span> <span class="w">  </span><span class="k">DO </span><span class="mi">13</span><span class="w"> </span><span class="n">KPIV</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">KP1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KPIV</span><span class="o">+</span><span class="mi">1</span>
+<span class="c">C</span>
+<span class="c">C-------- find max pivot index KX</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">KX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KPIV</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">131</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="n">KP1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">IF</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">))</span><span class="o">-</span><span class="nb">ABS</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">)))</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="mi">131</span><span class="p">,</span><span class="mi">1311</span>
+<span class="nl"> 1311</span> <span class="w">       </span><span class="n">KX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K</span>
+<span class="nl">  131</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">IF</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">     </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Singular A block, i = &#39;</span><span class="p">,</span><span class="n">I</span>
+<span class="nl">     </span> <span class="w">     </span><span class="k">STOP</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">PIVOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C-------- switch pivots</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C-------- switch rows &amp; normalize pivot row</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">132</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="n">KP1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">PIVOT</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">A</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">A</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TEMP</span>
+<span class="nl">  132</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">133</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">PIVOT</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">C</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">C</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TEMP</span>
+<span class="nl">  133</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">134</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">PIVOT</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">R</span><span class="p">(</span><span class="n">KX</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">R</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TEMP</span>
+<span class="nl">  134</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C-------- forward eliminate everything</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">135</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="n">KP1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">ATMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">KPIV</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1351</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="n">KP1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ATMP</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 1351</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1352</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">C</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ATMP</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 1352</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1353</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ATMP</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 1353</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">  135</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">   13</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C------ solve for last row</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">I</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Singular A block, i = &#39;</span><span class="p">,</span><span class="n">I</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">STOP</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PIVOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="n">A</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">NB</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">141</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">C</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">PIVOT</span>
+<span class="nl">  141</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">142</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">NB</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">PIVOT</span>
+<span class="nl">  142</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C------ back substitute everything</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">15</span><span class="w"> </span><span class="n">KPIV</span><span class="o">=</span><span class="n">NB</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">KP1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KPIV</span><span class="o">+</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">151</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="n">KP1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">ATMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1511</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">C</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ATMP</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 1511</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">1512</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">R</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">KPIV</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ATMP</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 1512</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">  151</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="nl">   15</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="nl">    1</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">CCC** Backward sweep: Back substitution using upper block diagonal (Ci&#39;s).</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">2</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">IP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="o">+</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">21</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NRHS</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">DO </span><span class="mi">211</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="mi">2111</span><span class="w"> </span><span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NB</span>
+<span class="nl">     </span> <span class="w">        </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IP</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">J</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="nl"> 2111</span> <span class="w">      </span><span class="k">CONTINUE</span>
+<span class="nl">  211</span> <span class="w">    </span><span class="k">CONTINUE</span>
+<span class="nl">   21</span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="nl">    2</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! BNSOLV</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./qprop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="io_f.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">io.f</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roie R. Black
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

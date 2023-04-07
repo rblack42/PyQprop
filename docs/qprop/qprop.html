@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>QPROP: Propeller Analysis Code &#8212; PyQpro</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'qprop/qprop';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QProp Algorithms" href="qprop-algorithms.html" />
+    <link rel="prev" title="Refactoring Mark Drela’s Tools" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/lpp.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/lpp.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Refactoring Mark Drela’s Tools
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QPROP: Propeller Analysis Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop-algorithms.html">QProp Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop_f.html">qprop.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qcget_f.html">qcget.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tqcalc_f.html">tqcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdfun_f.html">cdfun.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gvcalc_f.html">gvcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spline_f.html">spline.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_f.html">io.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bnsolv_f.html">bnsolv.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela/issues/new?title=Issue%20on%20page%20%2Fqprop/qprop.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/qprop/qprop.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>QPROP: Propeller Analysis Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-qprop-v1-22">Download Qprop v1.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-the-code">Extract the Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-qprop">Compiling Qprop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-source-files">Copy Source Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-object-files">Generate Object Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-build-executable">Link to Build Executable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-application">Test the Application</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qprop-propeller-analysis-code">
+<h1>QPROP: Propeller Analysis Code<a class="headerlink" href="#qprop-propeller-analysis-code" title="Permalink to this heading">#</a></h1>
+<p>Mark Deela wrote the <em>QProp</em> application to help design propeller/electric motor combinations for powered flight. The last release of this code was produced in 2009 (<em>Qprop 1.31</em>). In this note we will look at the part of this code that deals with the propeller design. The intent here is to work toward code that can be used for indoor propeller design.</p>
+<p>We will start this work by making sure the original code can be compiled and run on my Macbook. Later, we will test this process on Windows as well.</p>
+<section id="download-qprop-v1-22">
+<h2>Download Qprop v1.22<a class="headerlink" href="#download-qprop-v1-22" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl<span class="w"> </span>https://web.mit.edu/drela/Public/web/qprop/qprop1.22.tar.gz<span class="w"> </span>-o<span class="w"> </span>../master/qprop1.22.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100  211k  100  211k    0     0  1102k      0 --:--:-- --:--:-- --:--:-- 1135k
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-the-code">
+<h2>Extract the Code<a class="headerlink" href="#extract-the-code" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../master<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tar<span class="w"> </span>zxvf<span class="w"> </span>qprop1.22.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x Qprop/
+x Qprop/README
+x Qprop/bin/
+x Qprop/bin/Makefile
+x Qprop/qmil_doc.txt
+x Qprop/qprop_doc.txt
+x Qprop/runs/
+x Qprop/runs/air/
+x Qprop/runs/air/apc80.dat
+x Qprop/runs/air/apc1.dat
+x Qprop/runs/air/apc2.dat
+x Qprop/runs/air/gunther.dat
+x Qprop/runs/air/propi.dat
+x Qprop/runs/air/s9.dat
+x Qprop/runs/kagan_cruise.txt
+x Qprop/runs/airship.mil
+x Qprop/runs/apc.txt
+x Qprop/runs/apc14x10e
+x Qprop/runs/apc16x10e
+x Qprop/runs/apc18x10e
+x Qprop/runs/apc5.5x4.5
+x Qprop/runs/apc6x4
+x Qprop/runs/apc7x4
+x Qprop/runs/apc8x3.8
+x Qprop/runs/apc8x6
+x Qprop/runs/apc8x8
+x Qprop/runs/axi2204-54
+x Qprop/runs/axi4130-16
+x Qprop/runs/axi4130-20
+x Qprop/runs/axi5320-28
+x Qprop/runs/cam6x3
+x Qprop/runs/cam6x3mod
+x Qprop/runs/cam6x4
+x Qprop/runs/cam6x7
+x Qprop/runs/df1.mil
+x Qprop/runs/dfpar1
+x Qprop/runs/dfpar2
+x Qprop/runs/dfprop
+x Qprop/runs/ep1280
+x Qprop/runs/f1d
+x Qprop/runs/f1d.mil
+x Qprop/runs/f1dVD0
+x Qprop/runs/f1dVD1
+x Qprop/runs/fid
+x Qprop/runs/gunther
+x Qprop/runs/kagan
+x Qprop/runs/kagan.raw
+x Qprop/runs/motors.pdf
+x Qprop/runs/param1
+x Qprop/runs/param2
+x Qprop/runs/param3
+x Qprop/runs/pot30w10v
+x Qprop/runs/qcon.def
+x Qprop/runs/s280-6v-dd
+x Qprop/runs/s300-7v-5.3
+x Qprop/runs/s300-7v-dd
+x Qprop/runs/s400-6v-4.0
+x Qprop/runs/s400-6v-dd
+x Qprop/runs/s400-7v-dd
+x Qprop/runs/s600-10.0
+x Qprop/runs/s600-8v-dd
+x Qprop/runs/s9.mil
+x Qprop/runs/solar
+x Qprop/runs/solar.mil
+x Qprop/runs/t
+x Qprop/runs/t80
+x Qprop/runs/t88
+x Qprop/runs/t88a
+x Qprop/runs/t88h
+x Qprop/runs/t92
+x Qprop/runs/temp.prop
+x Qprop/runs/template.mil
+x Qprop/runs/test.mil
+x Qprop/runs/test1
+x Qprop/runs/wind
+x Qprop/runs/wind.mil
+x Qprop/runs/wind0.mil
+x Qprop/runs/windb.mil
+x Qprop/runs/winds.mil
+x Qprop/src/
+x Qprop/src/q.ftnchek
+x Qprop/src/Makefile
+x Qprop/src/QDEF.INC
+x Qprop/src/bnsolv.f
+x Qprop/src/cdfun.f
+x Qprop/src/gvcalc.f
+x Qprop/src/io.f
+x Qprop/src/motor.f
+x Qprop/src/qm.ftnchek
+x Qprop/src/qcget.f
+x Qprop/src/qmil.f
+x Qprop/src/qprop.f
+x Qprop/src/spline.f
+x Qprop/src/test1.f
+x Qprop/src/test2.f
+x Qprop/src/testc.f
+x Qprop/src/testm.f
+x Qprop/src/tpdes.f
+x Qprop/src/tqcalc.f
+x Qprop/version_notes.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../master/Qprop/bin<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cat<span class="w"> </span>Makefile
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SRC = ../src
+VLSRC = ../vlsrc
+FFLAGS = -O -r8 
+
+#------------------------------------
+# default Unix fortran
+FC = f77
+FTNLIB =
+
+#------------------------------------
+# Intel Fortran Compiler
+FC = ifort
+#FTNLIB = -Vaxlib
+#FTNLIB = -Vaxlib /usr/lib/C-ctype.o /usr/lib/C_name.o /usr/lib/ctype-info.o
+
+#------------------------------------
+#FC = g77
+#FFLAGS = -O -dbl
+
+#------------------------------------
+
+qprop: qprop.o gvcalc.o cdfun.o tqcalc.o motor.o spline.o io.o qcget.o
+	$(FC) -o qprop qprop.o gvcalc.o cdfun.o tqcalc.o motor.o \
+spline.o io.o qcget.o $(FTNLIB)
+
+qmil: qmil.o tpdes.o gvcalc.o cdfun.o tqcalc.o bnsolv.o \
+spline.o io.o qcget.o
+	$(FC) -o qmil qmil.o tpdes.o gvcalc.o cdfun.o tqcalc.o bnsolv.o \
+spline.o io.o qcget.o $(FTNLIB)
+
+vlprop: vlprop.o cdfun.o vlset.o motor.o aic.o \
+spline.o io.o qcget.o aread.o lefinda.o
+	$(FC) -o vlprop vlprop.o cdfun.o vlset.o motor.o aic.o \
+spline.o io.o qcget.o aread.o lefinda.o $(FTNLIB)
+
+
+
+qprop.o: $(SRC)/qprop.f $(SRC)/QDEF.INC
+	$(FC) -c $(FFLAGS) $(SRC)/qprop.f
+
+qmil.o: $(SRC)/qmil.f $(SRC)/QDEF.INC
+	$(FC) -c $(FFLAGS) $(SRC)/qmil.f
+
+tpdes.o: $(SRC)/tpdes.f
+	$(FC) -c $(FFLAGS) $(SRC)/tpdes.f
+
+gvcalc.o: $(SRC)/gvcalc.f
+	$(FC) -c $(FFLAGS) $(SRC)/gvcalc.f
+
+cdfun.o: $(SRC)/cdfun.f
+	$(FC) -c $(FFLAGS) $(SRC)/cdfun.f
+
+tqcalc.o: $(SRC)/tqcalc.f
+	$(FC) -c $(FFLAGS) $(SRC)/tqcalc.f
+
+motor.o: $(SRC)/motor.f
+	$(FC) -c $(FFLAGS) $(SRC)/motor.f
+
+bnsolv.o: $(SRC)/bnsolv.f
+	$(FC) -c $(FFLAGS) $(SRC)/bnsolv.f
+
+spline.o: $(SRC)/spline.f
+	$(FC) -c $(FFLAGS) $(SRC)/spline.f
+
+io.o: $(SRC)/io.f
+	$(FC) -c $(FFLAGS) $(SRC)/io.f
+
+qcget.o: $(SRC)/qcget.f
+	$(FC) -c $(FFLAGS) $(SRC)/qcget.f
+
+
+vlprop.o: $(VLSRC)/vlprop.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/vlprop.f
+
+vlset.o: $(VLSRC)/vlset.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/vlset.f
+
+helxyz.o: $(VLSRC)/helxyz.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/helxyz.f
+
+helcam.o: $(VLSRC)/helcam.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/helcam.f
+
+aread.o: $(VLSRC)/aread.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/aread.f
+
+lefinda.o: $(VLSRC)/lefinda.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/lefinda.f
+
+aic.o: $(VLSRC)/aic.f
+	$(FC) -c $(FFLAGS) $(VLSRC)/aic.f
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at this file, we see that several programs are constructed using this code: <strong>qprop</strong>, <strong>qmil</strong>, and <strong>vlprop</strong>. However, the code needed for that last program does not seem to be present in the archive.</p>
+<p><em>Qmil</em> is a design program that generates data files to be processed by <em>Qprop</em>. For the moment, we will focus only on the <em>Qprop</em> code.</p>
+</section>
+<section id="compiling-qprop">
+<h2>Compiling Qprop<a class="headerlink" href="#compiling-qprop" title="Permalink to this heading">#</a></h2>
+<p>The **Makefile found in the <strong>bin</strong> directory is set up to use the Intel Fortran compiler. We will use <em>GFortran</em> which is part of the <em>Gnu</em> tool chain.</p>
+<p>Here is a check that <strong>gfortran</strong> is available:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>gfortran<span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using built-in specs.
+COLLECT_GCC=gfortran
+COLLECT_LTO_WRAPPER=/opt/homebrew/Cellar/gcc/12.2.0/bin/../libexec/gcc/aarch64-apple-darwin21/12/lto-wrapper
+Target: aarch64-apple-darwin21
+Configured with: ../configure --prefix=/opt/homebrew/opt/gcc --libdir=/opt/homebrew/opt/gcc/lib/gcc/current --disable-nls --enable-checking=release --with-gcc-major-version-only --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-12 --with-gmp=/opt/homebrew/opt/gmp --with-mpfr=/opt/homebrew/opt/mpfr --with-mpc=/opt/homebrew/opt/libmpc --with-isl=/opt/homebrew/opt/isl --with-zstd=/opt/homebrew/opt/zstd --with-pkgversion=&#39;Homebrew GCC 12.2.0&#39; --with-bugurl=https://github.com/Homebrew/homebrew-core/issues --with-system-zlib --build=aarch64-apple-darwin21 --with-sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 12.2.0 (Homebrew GCC 12.2.0) 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Building <em>Qprop</em> is fairly easy. In real development, we would use a tool like <em>GNU Make</em> to set up the build. However, we will let Python do things directly in this page to show what steps are needed.</p>
+<section id="copy-source-files">
+<h3>Copy Source Files<a class="headerlink" href="#copy-source-files" title="Permalink to this heading">#</a></h3>
+<p>In order to leave the master files untouched, we will copy the needed source files into a build directory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>-p<span class="w"> </span>../master/build-qprop
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the master <strong>Makefile</strong>, here are the files needed to build the program:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FSRCS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;qprop.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;gvcalc.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;cdfun.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;tqcalc.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;motor.f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;spline.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;io.f&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;qcget.f&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Copy the files to the build directory</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="n">BUILD</span> <span class="o">=</span> <span class="s2">&quot;../master/build-qprop/&quot;</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">FSRCS</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Copying </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;../master/Qprop/src/&quot;</span> <span class="o">+</span> <span class="n">f</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">BUILD</span> <span class="o">+</span> <span class="n">f</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Copying qprop.f
+Copying gvcalc.f
+Copying cdfun.f
+Copying tqcalc.f
+Copying motor.f
+Copying spline.f
+Copying io.f
+Copying qcget.f
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-object-files">
+<h3>Generate Object Files<a class="headerlink" href="#generate-object-files" title="Permalink to this heading">#</a></h3>
+<p>Now, we generate the object files. This first step deletes any old object files that may be present:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;rm -f </span><span class="si">{</span><span class="n">BUILD</span><span class="si">}</span><span class="s2">*.o&quot;</span>
+<span class="n">cmd</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">FSRCS</span><span class="p">:</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BUILD</span><span class="si">}{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BUILD</span><span class="si">}{</span><span class="n">f</span><span class="si">}</span><span class="s2">.o&quot;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;gfortran -c </span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2"> -o </span><span class="si">{</span><span class="n">dst</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../master/build-qprop/qprop.f:85:0:
+
+   85 |       INCLUDE &#39;QDEF.INC&#39;
+      | 
+Fatal Error: Cannot open included file &#39;QDEF.INC&#39;
+compilation terminated.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="link-to-build-executable">
+<h3>Link to Build Executable<a class="headerlink" href="#link-to-build-executable" title="Permalink to this heading">#</a></h3>
+<p>Finally, we link these object files together to build the application:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">FSRCS</span><span class="p">:</span>
+    <span class="n">objs</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BUILD</span><span class="si">}{</span><span class="n">f</span><span class="si">}</span><span class="s2">.o &quot;</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;gfortran </span><span class="si">{</span><span class="n">objs</span><span class="si">}</span><span class="s2"> -o </span><span class="si">{</span><span class="n">BUILD</span><span class="si">}</span><span class="s2">qprop&quot;</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ld: file not found: ../master/build-qprop/qprop.f.o
+collect2: error: ld returned 1 exit status
+</pre></div>
+</div>
+</div>
+</div>
+<p>This creates the program executable.</p>
+</section>
+<section id="test-the-application">
+<h3>Test the Application<a class="headerlink" href="#test-the-application" title="Permalink to this heading">#</a></h3>
+<p>We can test the program using an example input file from the master copy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>../master/build-qprop/qprop<span class="w"> </span>../master/Qprop/runs/cam6x3
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>zsh:1: no such file or directory: ../master/build-qprop/qprop
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./qprop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Refactoring Mark Drela’s Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qprop-algorithms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">QProp Algorithms</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-qprop-v1-22">Download Qprop v1.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-the-code">Extract the Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-qprop">Compiling Qprop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-source-files">Copy Source Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-object-files">Generate Object Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-build-executable">Link to Build Executable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-application">Test the Application</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roie R. Black
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

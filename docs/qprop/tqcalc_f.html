@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>tqcalc.f &#8212; PyQpro</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'qprop/tqcalc_f';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cdfun.f" href="cdfun_f.html" />
+    <link rel="prev" title="qcget.f" href="qcget_f.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/lpp.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/lpp.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Refactoring Mark Drela’s Tools
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="qprop.html">QPROP: Propeller Analysis Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop-algorithms.html">QProp Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop_f.html">qprop.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qcget_f.html">qcget.f</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">tqcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdfun_f.html">cdfun.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gvcalc_f.html">gvcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spline_f.html">spline.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_f.html">io.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bnsolv_f.html">bnsolv.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela/issues/new?title=Issue%20on%20page%20%2Fqprop/tqcalc_f.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/qprop/tqcalc_f.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>tqcalc.f</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="tqcalc-f">
+<h1>tqcalc.f<a class="headerlink" href="#tqcalc-f" title="Permalink to this heading">#</a></h1>
+<div class="highlight-fortranfixed notranslate"><div class="highlight"><pre><span></span><span class="c">C***********************************************************************</span>
+<span class="c">C    Module:  tqcalc.f</span>
+<span class="c">C </span>
+<span class="c">C    Copyright (C) 2003 Mark Drela </span>
+<span class="c">C </span>
+<span class="c">C    This program is free software; you can redistribute it and/or modify</span>
+<span class="c">C    it under the terms of the GNU General Public License as published by</span>
+<span class="c">C    the Free Software Foundation; either version 2 of the License, or</span>
+<span class="c">C    (at your option) any later version.</span>
+<span class="c">C</span>
+<span class="c">C    This program is distributed in the hope that it will be useful,</span>
+<span class="c">C    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">C    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">C    GNU General Public License for more details.</span>
+<span class="c">C</span>
+<span class="c">C    You should have received a copy of the GNU General Public License</span>
+<span class="c">C    along with this program; if not, write to the Free Software</span>
+<span class="c">C    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</span>
+<span class="c">C***********************************************************************</span>
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">TQCALC</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">DR</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">VA</span><span class="p">,</span><span class="n">VT</span><span class="p">,</span><span class="n">CL</span><span class="p">,</span><span class="n">CD</span><span class="p">,</span><span class="n">STALL</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">BLDS</span><span class="p">,</span><span class="n">RAD</span><span class="p">,</span><span class="n">VEL</span><span class="p">,</span><span class="n">OMG</span><span class="p">,</span><span class="n">DBE</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">RHO</span><span class="p">,</span><span class="n">RMU</span><span class="p">,</span><span class="n">VSO</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CL0</span><span class="p">,</span><span class="n">DCLDA</span><span class="p">,</span><span class="n">CLMIN</span><span class="p">,</span><span class="n">CLMAX</span><span class="p">,</span><span class="n">MCRIT</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CD0</span><span class="p">,</span><span class="n">CD2U</span><span class="p">,</span><span class="n">CD2L</span><span class="p">,</span><span class="n">CLCD0</span><span class="p">,</span><span class="n">REREF</span><span class="p">,</span><span class="n">REEXP</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">TP</span><span class="p">,</span><span class="w"> </span><span class="n">TP_VEL</span><span class="p">,</span><span class="w"> </span><span class="n">TP_OMG</span><span class="p">,</span><span class="w"> </span><span class="n">TP_DBE</span><span class="p">,</span><span class="w"> </span><span class="n">TP_C</span><span class="p">,</span><span class="w"> </span><span class="n">TP_B</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">QP</span><span class="p">,</span><span class="w"> </span><span class="n">QP_VEL</span><span class="p">,</span><span class="w"> </span><span class="n">QP_OMG</span><span class="p">,</span><span class="w"> </span><span class="n">QP_DBE</span><span class="p">,</span><span class="w"> </span><span class="n">QP_C</span><span class="p">,</span><span class="w"> </span><span class="n">QP_B</span><span class="w"> </span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">IMPLICIT </span><span class="kt">REAL</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">C</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">DR</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">CL0</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">DCLDA</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CLMIN</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CLMAX</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">MCRIT</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">CD0</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CD2U</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CD2L</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">CLCD0</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">REREF</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">REEXP</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">VA</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">VT</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">REAL </span><span class="n">TP_C</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">TP_B</span><span class="p">(</span><span class="n">N</span><span class="p">),</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="n">QP_C</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">QP_B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">LOGICAL </span><span class="n">STALL</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C-----------------------------------------------------</span>
+<span class="c">C     Computes propeller thrust and torque</span>
+<span class="c">C     by integrating forces along radius.</span>
+<span class="c">C</span>
+<span class="c">C</span>
+<span class="c">C  Input   N      number of radial stations  i = 1..N</span>
+<span class="c">C          C(i)   chords</span>
+<span class="c">C          B(i)   angles (radians)</span>
+<span class="c">C          R(i)   radii</span>
+<span class="c">C          DR(i)  radius interval for i station</span>
+<span class="c">C</span>
+<span class="c">C          BLDS    number of blades</span>
+<span class="c">C          RAD     tip radius  (for Prandtl&#39;s factor)</span>
+<span class="c">C          VEL     forward flight speed</span>
+<span class="c">C          OMG     rotational speed  (radians/time)</span>
+<span class="c">C          DBE     delta(B) to be added to all B(i) angles</span>
+<span class="c">C</span>
+<span class="c">C          RHO     fluid density</span>
+<span class="c">C          RMU     fluid viscosity</span>
+<span class="c">C</span>
+<span class="c">C          CL0(i)     constants for CL(alpha,M) function</span>
+<span class="c">C          DCLDA(i)</span>
+<span class="c">C          CLMIN(i)</span>
+<span class="c">C          CLMAX(i)</span>
+<span class="c">C          MCRIT(i)</span>
+<span class="c">C</span>
+<span class="c">C          CD0(i)     constant  coefficient for CD(CL) function</span>
+<span class="c">C          CD2(i)     quadratic coefficient for CD(CL) function</span>
+<span class="c">C          CLCD0(i)   CL at minimum drag point (where CD=CD0)</span>
+<span class="c">C          REREF(i)   reference Reynolds number where CD(CL) applies</span>
+<span class="c">C          REEXP(i)   Re-scaling exponent:   CD ~ (Re/REREF)^REEXP</span>
+<span class="c">C</span>
+<span class="c">C</span>
+<span class="c">C  Output  VA(i)    axial induced velocity</span>
+<span class="c">C          VT(i)    tangential induced velocity</span>
+<span class="c">C          CL(i)    section lift coefficient</span>
+<span class="c">C          CD(i)    section drag coefficient</span>
+<span class="c">C          STALL(i) T if alpha is outside stall limits</span>
+<span class="c">C</span>
+<span class="c">C          TP       prop thrust</span>
+<span class="c">C          QP       prop torque</span>
+<span class="c">C          ()_VEL   derivatives  d()/dVEL</span>
+<span class="c">C          ()_OMG   derivatives  d()/dOMG</span>
+<span class="c">C          ()_DBE   derivatives  d()/dDBE</span>
+<span class="c">C          ()_C(i)  derivatives  d()/dC(i)</span>
+<span class="c">C          ()_B(i)  derivatives  d()/dB(i)</span>
+<span class="c">C</span>
+<span class="c">C-----------------------------------------------------</span>
+<span class="nl">     </span> <span class="kt">LOGICAL </span><span class="n">LCONV</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">DATA </span><span class="n">MSQMAX</span><span class="w">    </span><span class="o">/</span><span class="w"> </span><span class="mf">0.9</span><span class="w">    </span><span class="o">/</span>
+<span class="c">C</span>
+<span class="c">C---- clear for accumulation</span>
+<span class="nl">     </span> <span class="n">TP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">TP_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">TP_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">TP_DBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">QP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">QP_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">QP_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="n">QP_DBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="c">C</span>
+<span class="c">C---- go over radial stations</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">BTOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DBE</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">CALL </span><span class="n">GVCALC</span><span class="p">(</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">BTOT</span><span class="p">,</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">),</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">BLDS</span><span class="p">,</span><span class="n">RAD</span><span class="p">,</span><span class="n">VEL</span><span class="p">,</span><span class="n">OMG</span><span class="p">,</span><span class="n">VSO</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CL0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">DCLDA</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CLMIN</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CLMAX</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">MCRIT</span><span class="p">(</span><span class="n">I</span><span class="p">),</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">        </span><span class="n">GAM</span><span class="w">  </span><span class="p">,</span><span class="n">GAM_VEL</span><span class="p">,</span><span class="n">GAM_OMG</span><span class="p">,</span><span class="n">GAM_C</span><span class="p">,</span><span class="n">GAM_B</span><span class="p">,</span><span class="w"> </span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">        </span><span class="n">VA</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="w"> </span><span class="n">VA_VEL</span><span class="p">,</span><span class="w"> </span><span class="n">VA_OMG</span><span class="p">,</span><span class="w"> </span><span class="n">VA_C</span><span class="p">,</span><span class="w"> </span><span class="n">VA_B</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">        </span><span class="n">VT</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="w"> </span><span class="n">VT_VEL</span><span class="p">,</span><span class="w"> </span><span class="n">VT_OMG</span><span class="p">,</span><span class="w"> </span><span class="n">VT_C</span><span class="p">,</span><span class="w"> </span><span class="n">VT_B</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">        </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="w"> </span><span class="n">CL_VEL</span><span class="p">,</span><span class="w"> </span><span class="n">CL_OMG</span><span class="p">,</span><span class="w"> </span><span class="n">CL_C</span><span class="p">,</span><span class="w"> </span><span class="n">CL_B</span><span class="p">,</span><span class="w"> </span><span class="n">STALL</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="w"> </span><span class="n">LCONV</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C------ perturbation imposed axial and tangential velocities</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">GAM_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">GAM_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">VA_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">VA_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">VT_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">VT_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CL_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CL_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="c">C</span>
+<span class="c">C------ total imposed axial and tangential velocities</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UA</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">VEL</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UA_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UA_U0A</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="mf">1.0</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UT</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">OMG</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">U0T</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UT_OMG</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">UT_U0T</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="c">C</span>
+<span class="c">C------ geometric velocity</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="n">UA</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">UT</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WZ_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA</span><span class="o">/</span><span class="n">WZ</span><span class="p">)</span><span class="o">*</span><span class="n">UA_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WZ_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UT</span><span class="o">/</span><span class="n">WZ</span><span class="p">)</span><span class="o">*</span><span class="n">UT_OMG</span>
+<span class="c">C</span>
+<span class="c">C------ total axial and tangential velocities</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">UA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">VA</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VA_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_OMG</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="n">VA_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_B</span><span class="w">   </span><span class="o">=</span><span class="w">          </span><span class="n">VA_B</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_C</span><span class="w">   </span><span class="o">=</span><span class="w">          </span><span class="n">VA_C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VA_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WA_U0T</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="n">VA_U0T</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">UT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">VT</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_VEL</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">VT_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UT_OMG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">VT_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_B</span><span class="w">   </span><span class="o">=</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">VT_B</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_C</span><span class="w">   </span><span class="o">=</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">VT_C</span><span class="w"> </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_U0A</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">VT_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WT_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UT_U0T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">VT_U0T</span>
+<span class="c">C</span>
+<span class="c">C------ total velocity^2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WA</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">WT</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_B</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_C</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">WSQ_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WA</span><span class="o">*</span><span class="n">WA_U0T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">WT</span><span class="o">*</span><span class="n">WT_U0T</span>
+<span class="c">C</span>
+<span class="c">C------ total velocity</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="n">WSQ</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_VEL</span><span class="o">/</span><span class="n">W</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_OMG</span><span class="o">/</span><span class="n">W</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_B</span><span class="w">  </span><span class="o">/</span><span class="n">W</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_C</span><span class="w">  </span><span class="o">/</span><span class="n">W</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_U0A</span><span class="o">/</span><span class="n">W</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">W_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">WSQ_U0T</span><span class="o">/</span><span class="n">W</span>
+<span class="c">C</span>
+<span class="c">C------ chord Reynolds number</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_VEL</span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_OMG</span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_B</span><span class="w">  </span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_C</span><span class="w">  </span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">RHO</span><span class="w">     </span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_U0A</span><span class="o">/</span><span class="n">RMU</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RE_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">W_U0T</span><span class="o">/</span><span class="n">RMU</span>
+<span class="c">C</span>
+<span class="c">C------ local Mach and PG factor</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ</span><span class="w">     </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_VEL</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_OMG</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_B</span><span class="w">   </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_C</span><span class="w">   </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_U0A</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MSQ_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WSQ_U0T</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">VSO</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">MSQ</span><span class="w"> </span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="w"> </span><span class="n">MSQMAX</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MSQMAX</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">MSQ_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MSQ</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_MSQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">PG</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MSQ</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_B</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">PG_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PG_MSQ</span><span class="o">*</span><span class="n">MSQ_U0T</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="n">MSQ</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAX</span><span class="p">(</span><span class="w"> </span><span class="n">MA</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">1.0E-8</span><span class="w"> </span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_B</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_C</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">MA_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="o">/</span><span class="n">MA</span><span class="p">)</span><span class="o">*</span><span class="n">MSQ_U0T</span>
+<span class="c">C</span>
+<span class="c">C------ set unstalled CD</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">).</span><span class="n">GT</span><span class="p">.</span><span class="n">CLCD0</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">CALL </span><span class="n">CDFUN</span><span class="p">(</span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">RE</span><span class="p">,</span><span class="n">MA</span><span class="p">,</span><span class="w"> </span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CLCD0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD2U</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">REREF</span><span class="p">,</span><span class="n">REEXP</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">MCRIT</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD_CL</span><span class="p">,</span><span class="n">CD_RE</span><span class="p">,</span><span class="n">CD_MA</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">CALL </span><span class="n">CDFUN</span><span class="p">(</span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">RE</span><span class="p">,</span><span class="n">MA</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CLCD0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD2L</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">REREF</span><span class="p">,</span><span class="n">REEXP</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">MCRIT</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">              </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CD_CL</span><span class="p">,</span><span class="n">CD_RE</span><span class="p">,</span><span class="n">CD_MA</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_VEL</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_OMG</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_B</span><span class="w">   </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_C</span><span class="w">   </span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_U0A</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">CD_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_CL</span><span class="o">*</span><span class="n">CL_U0T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_RE</span><span class="o">*</span><span class="n">RE_U0T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD_MA</span><span class="o">*</span><span class="n">MA_U0T</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">STALL</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="c">C------- additional CD with normal-force stall model</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">CALL </span><span class="n">DCDFUN</span><span class="p">(</span><span class="n">BTOT</span><span class="p">,</span><span class="n">WA</span><span class="p">,</span><span class="n">WT</span><span class="p">,</span><span class="w"> </span><span class="n">CLCD0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">CL0</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">DCLDA</span><span class="p">(</span><span class="n">I</span><span class="p">),</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">               </span><span class="n">DCD</span><span class="p">,</span><span class="n">DCD_B</span><span class="p">,</span><span class="n">DCD_WA</span><span class="p">,</span><span class="n">DCD_WT</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="n">DCD</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_VEL</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_OMG</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">CD_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_B</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">CD_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_C</span><span class="w">  </span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_U0A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_U0A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_U0A</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">CD_U0T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CD_U0T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WA</span><span class="o">*</span><span class="n">WA_U0T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DCD_WT</span><span class="o">*</span><span class="n">WT_U0T</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="c">C------ axial and tangential load/span</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">HRC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">RHO</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FA</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FA_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_VEL</span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_VEL</span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD_VEL</span><span class="o">*</span><span class="n">WA</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_VEL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_VEL</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FA_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_OMG</span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_OMG</span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD_OMG</span><span class="o">*</span><span class="n">WA</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_OMG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_OMG</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FA_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_B</span><span class="w">  </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_B</span><span class="w">  </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD_B</span><span class="w">  </span><span class="o">*</span><span class="n">WA</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_B</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_B</span><span class="w">  </span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FA_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_C</span><span class="w">  </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_C</span><span class="w">  </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD_C</span><span class="w">  </span><span class="o">*</span><span class="n">WA</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_C</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_C</span><span class="w">  </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">RHO</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">    </span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FT</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FT_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_VEL</span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_VEL</span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD_VEL</span><span class="o">*</span><span class="n">WT</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_VEL</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FT_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_OMG</span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_OMG</span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD_OMG</span><span class="o">*</span><span class="n">WT</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_OMG</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FT_B</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_B</span><span class="w">  </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_B</span><span class="w">  </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD_B</span><span class="w">  </span><span class="o">*</span><span class="n">WT</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_B</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_B</span><span class="w">  </span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">FT_C</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W_C</span><span class="w">  </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="n">HRC</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL_C</span><span class="w">  </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD_C</span><span class="w">  </span><span class="o">*</span><span class="n">WT</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA_C</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT_C</span><span class="w">  </span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">RHO</span><span class="o">*</span><span class="n">W</span><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="w">  </span><span class="n">CL</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WA</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">CD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">WT</span><span class="w">    </span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C------ sum thrust and torque</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">TP</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA</span><span class="w">    </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TP_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA_VEL</span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TP_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA_OMG</span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP_DBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TP_DBE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA_B</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP_B</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA_B</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">TP_C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FA_C</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">QP</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT</span><span class="w">    </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP_VEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QP_VEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT_VEL</span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP_OMG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QP_OMG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT_OMG</span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP_DBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QP_DBE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT_B</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP_B</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT_B</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">QP_C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="n">BLDS</span><span class="o">*</span><span class="n">FT_C</span><span class="w">  </span><span class="o">*</span><span class="n">DR</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+
+<span class="c">c       write(*,*) i</span>
+<span class="c">c       write(*,*) tp, qp</span>
+<span class="c">c       write(*,*) tp_vel, qp_vel</span>
+<span class="c">c       write(*,*) tp_omg, qp_omg</span>
+<span class="c">c       write(*,*) tp_b(i),qp_b(i)</span>
+<span class="c">c       write(*,*) tp_c(i),qp_c(i)</span>
+<span class="c">c       pause</span>
+<span class="c">c</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">ENDDO</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./qprop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qcget_f.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qcget.f</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cdfun_f.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">cdfun.f</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roie R. Black
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

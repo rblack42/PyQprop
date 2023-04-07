@@ -1,0 +1,1290 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>spline.f &#8212; PyQpro</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'qprop/spline_f';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="io.f" href="io_f.html" />
+    <link rel="prev" title="gvcalc.f" href="gvcalc_f.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/lpp.gif" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/lpp.gif" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Refactoring Mark Drela’s Tools
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="qprop.html">QPROP: Propeller Analysis Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop-algorithms.html">QProp Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qprop_f.html">qprop.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qcget_f.html">qcget.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tqcalc_f.html">tqcalc.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cdfun_f.html">cdfun.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gvcalc_f.html">gvcalc.f</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">spline.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_f.html">io.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bnsolv_f.html">bnsolv.f</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/rblack42/math-magik-drela/issues/new?title=Issue%20on%20page%20%2Fqprop/spline_f.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/qprop/spline_f.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>spline.f</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="spline-f">
+<h1>spline.f<a class="headerlink" href="#spline-f" title="Permalink to this heading">#</a></h1>
+<div class="highlight-fortranfixed notranslate"><div class="highlight"><pre><span></span><span class="c">C***********************************************************************</span>
+<span class="c">C    Module:  spline.f</span>
+<span class="c">C </span>
+<span class="c">C    Copyright (C) 2003 Mark Drela </span>
+<span class="c">C </span>
+<span class="c">C    This program is free software; you can redistribute it and/or modify</span>
+<span class="c">C    it under the terms of the GNU General Public License as published by</span>
+<span class="c">C    the Free Software Foundation; either version 2 of the License, or</span>
+<span class="c">C    (at your option) any later version.</span>
+<span class="c">C</span>
+<span class="c">C    This program is distributed in the hope that it will be useful,</span>
+<span class="c">C    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">C    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">C    GNU General Public License for more details.</span>
+<span class="c">C</span>
+<span class="c">C    You should have received a copy of the GNU General Public License</span>
+<span class="c">C    along with this program; if not, write to the Free Software</span>
+<span class="c">C    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</span>
+<span class="c">C***********************************************************************</span>
+
+<span class="c">c</span>
+<span class="c">c    1-D Spline Package.</span>
+<span class="c">c    Interpolates a function x(s) over an s interval</span>
+<span class="c">c</span>
+<span class="c">c                                              Mark Drela</span>
+<span class="c">c                                              1985</span>
+<span class="c">c</span>
+<span class="c">c    Usage:</span>
+<span class="c">c</span>
+<span class="c">cC---- fill S(i), X(i) arrays</span>
+<span class="c">c      S(i) = ...</span>
+<span class="c">c      X(i) = ...</span>
+<span class="c">c</span>
+<span class="c">cC---- calculate spline coefficients for x(s) from discrete values</span>
+<span class="c">cC-    (can use SPLIND or SPLINA instead)</span>
+<span class="c">c      CALL SPLINE(X,XS,S,N)</span>
+<span class="c">c</span>
+<span class="c">cC---- evaluate splined x(s) and/or its derivatives</span>
+<span class="c">cC-    at any number of s points SS</span>
+<span class="c">c      XX   = SEVAL(SS,X,XS,S,N)</span>
+<span class="c">c      XXS  = DEVAL(SS,X,XS,S,N)</span>
+<span class="c">c      XXSS = D2VAL(SS,X,XS,S,N)</span>
+<span class="c">c</span>
+<span class="c">cC---- alternative to calling SEVAL,DEVAL,D2VAL separately</span>
+<span class="c">cC-    (slightly more efficient if all three quantities are needed)</span>
+<span class="c">c      CALL SEVALL(SS,X,XS,S,N, XX,XXS,XXSS)</span>
+<span class="c">c</span>
+<span class="c">c</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SPLINE</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">PARAMETER</span><span class="w"> </span><span class="p">(</span><span class="n">NMAX</span><span class="o">=</span><span class="mi">5001</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">A</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">B</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">C</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="c">C     Calculates spline coefficients for X(S).          |</span>
+<span class="c">C     Natural end conditions are used (zero 3rd         |</span>
+<span class="c">C      derivative over first, last intervals).          |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     To evaluate the spline at some value of S,        |</span>
+<span class="c">C     use SEVAL and/or DEVAL.                           |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     S        independent variable array (input)       |</span>
+<span class="c">C     X        dependent variable array   (input)       |</span>
+<span class="c">C     XS       dX/dS array                (calculated)  |</span>
+<span class="c">C     N        number of points           (input)       |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="n">NMAX</span><span class="p">)</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SPLINE: array overflow, increase NMAX&#39;</span>
+<span class="c">C     </span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DSM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DSP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">B</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSP</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">DSM</span><span class="o">+</span><span class="n">DSP</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">((</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="o">*</span><span class="n">DSM</span><span class="o">/</span><span class="n">DSP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">DSP</span><span class="o">/</span><span class="n">DSM</span><span class="p">)</span>
+<span class="nl">    1</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C---- set zero 3rd derivative end conditions</span>
+<span class="nl">     </span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="n">XS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="c">C----- if only two points are present, specify zero 2nd derivative instead</span>
+<span class="c">C-     (straight line interpolation will result)</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="c">C---- solve for derivative array XS</span>
+<span class="nl">     </span> <span class="k">CALL </span><span class="n">TRISOL</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SPLINE</span>
+
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SPLIND</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">XS2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">PARAMETER</span><span class="w"> </span><span class="p">(</span><span class="n">NMAX</span><span class="o">=</span><span class="mi">5001</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">A</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">B</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">C</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="c">C     Calculates spline coefficients for X(S).          |</span>
+<span class="c">C     Same as SPLINE, but also allows specified-slope   |</span>
+<span class="c">C     or zero-curvature end conditions to be imposed.   |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     To evaluate the spline at some value of S,        |</span>
+<span class="c">C     use SEVAL and/or DEVAL.                           |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     S        independent variable array (input)       |</span>
+<span class="c">C     X        dependent variable array   (input)       |</span>
+<span class="c">C     XS       dX/dS array                (calculated)  |</span>
+<span class="c">C     N        number of points           (input)       |</span>
+<span class="c">C     XS1,XS2  endpoint derivatives       (input)       |</span>
+<span class="c">C              If =  999.0, then usual zero second      |</span>
+<span class="c">C              derivative end condition(s) are used     |</span>
+<span class="c">C              If = -999.0, then zero third             |</span>
+<span class="c">C              derivative end condition(s) are used     |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     Note: specifying both XS1,XS2 = -999.0            |</span>
+<span class="c">C           is equivalent to using SPLINE.              |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="n">NMAX</span><span class="p">)</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SPLIND: array overflow, increase NMAX&#39;</span>
+<span class="c">C     </span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DSM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DSP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">B</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSP</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">DSM</span><span class="o">+</span><span class="n">DSP</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DSM</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">((</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="o">*</span><span class="n">DSM</span><span class="o">/</span><span class="n">DSP</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">DSP</span><span class="o">/</span><span class="n">DSM</span><span class="p">)</span>
+<span class="nl">    1</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">XS1</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mi">99</span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="c">C----- set zero second derivative end condition</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ELSE IF</span><span class="p">(</span><span class="n">XS1</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="c">C----- set zero third derivative end condition</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="c">C----- set specified first derivative end condition</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS1</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">XS2</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mi">99</span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ELSE IF</span><span class="p">(</span><span class="n">XS2</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS2</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">N</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mi">2</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span><span class="w"> </span><span class="n">XS1</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span><span class="w"> </span><span class="n">XS2</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="c">C---- solve for derivative array XS</span>
+<span class="nl">     </span> <span class="k">CALL </span><span class="n">TRISOL</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SPLIND</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SPLINA</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">LOGICAL </span><span class="n">LEND</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="c">C     Calculates spline coefficients for X(S) by a      |</span>
+<span class="c">C     simple averaging of adjacent segment slopes.      |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     Interpolated X(S) is less likely to oscillate     |</span>
+<span class="c">C     than with SPLINE, but does not have continuity    |</span>
+<span class="c">C     in curvature.                                     |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     To evaluate the spline at some value of S,        |</span>
+<span class="c">C     use SEVAL and/or DEVAL.                           |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C     S        independent variable array (input)       |</span>
+<span class="c">C     X        dependent variable array   (input)       |</span>
+<span class="c">C     XS       dX/dS array                (calculated)  |</span>
+<span class="c">C     N        number of points           (input)       |</span>
+<span class="c">C                                                       |</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="c">C     </span>
+<span class="nl">     </span> <span class="n">LEND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">DS</span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="mf">0.</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS1</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">LEND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">DX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">XS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">LEND</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS2</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">LEND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">     </span><span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w">      </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">XS1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">XS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS2</span>
+<span class="nl">    1</span> <span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XS1</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SPLINA</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">TRISOL</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">KK</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">A</span><span class="p">(</span><span class="n">KK</span><span class="p">),</span><span class="n">B</span><span class="p">(</span><span class="n">KK</span><span class="p">),</span><span class="n">C</span><span class="p">(</span><span class="n">KK</span><span class="p">),</span><span class="n">D</span><span class="p">(</span><span class="n">KK</span><span class="p">)</span>
+<span class="c">C-----------------------------------------</span>
+<span class="c">C     Solves KK long, tri-diagonal system |</span>
+<span class="c">C                                         |</span>
+<span class="c">C             A C          D              |</span>
+<span class="c">C             B A C        D              |</span>
+<span class="c">C               B A .      .              |</span>
+<span class="c">C                 . . C    .              |</span>
+<span class="c">C                   B A    D              |</span>
+<span class="c">C                                         |</span>
+<span class="c">C     The righthand side D is replaced by |</span>
+<span class="c">C     the solution.  A, C are destroyed.  |</span>
+<span class="c">C-----------------------------------------</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">KK</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">KM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">D</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">C</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">D</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">(</span><span class="n">KM</span><span class="p">)</span>
+<span class="nl">    1</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">D</span><span class="p">(</span><span class="n">KK</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D</span><span class="p">(</span><span class="n">KK</span><span class="p">)</span><span class="o">/</span><span class="n">A</span><span class="p">(</span><span class="n">KK</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">2</span><span class="w"> </span><span class="n">K</span><span class="o">=</span><span class="n">KK</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">D</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">(</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">    2</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! TRISOL</span>
+
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">GEVAL</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="c">C     Calculates int( X(SS) ) dS                   |</span>
+<span class="c">C     XS array must have been calculated by SPLINE |</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="c">C---- first integrate up to I-1 point</span>
+<span class="nl">     </span> <span class="n">GEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="o">-</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C------ Int X(t) dt  for t = 0..1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DGEV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">XS</span><span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">K</span><span class="p">))</span><span class="o">*</span><span class="n">DS</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">GEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEVAL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DGEV</span><span class="o">*</span><span class="n">DS</span>
+<span class="nl">     </span> <span class="k">ENDDO</span>
+<span class="c">C</span>
+<span class="c">C---- now integrate up to SS value in I-1..I interval</span>
+<span class="nl">     </span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">CX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">DGEV</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.5</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">6.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">8.0</span><span class="o">*</span><span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">CX1</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">CX2</span><span class="o">/</span><span class="mi">1</span><span class="mf">2.0</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">GEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEVAL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DGEV</span><span class="o">*</span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! GEVAL</span>
+
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">SEVAL</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="c">C     Calculates X(SS)                             |</span>
+<span class="c">C     XS array must have been calculated by SPLINE |</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">CX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">SEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="mf">1.0</span><span class="o">-</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="n">CX2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SEVAL</span>
+
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">DEVAL</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="c">C     Calculates dX/dS(SS)                         |</span>
+<span class="c">C     XS array must have been calculated by SPLINE |</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">CX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">DEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">4.0</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">CX2</span>
+<span class="nl">     </span> <span class="n">DEVAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEVAL</span><span class="o">/</span><span class="n">DS</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! DEVAL</span>
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">D2VAL</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="c">C     Calculates d2X/dS2(SS)                       |</span>
+<span class="c">C     XS array must have been calculated by SPLINE |</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">CX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">D2VAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">6.</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">4.</span><span class="p">)</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">6.</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">CX2</span>
+<span class="nl">     </span> <span class="n">D2VAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D2VAL</span><span class="o">/</span><span class="n">DS</span><span class="o">**</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! D2VAL</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SEVALL</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                  </span><span class="n">XX</span><span class="p">,</span><span class="w"> </span><span class="n">XXS</span><span class="p">,</span><span class="w"> </span><span class="n">XXSS</span><span class="w"> </span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="c">C     Calculates all spline derivatives.           |</span>
+<span class="c">C     (Combines SEVAL, DEVAL, D2VAL)               |</span>
+<span class="c">C     XS array must have been calculated by SPLINE |</span>
+<span class="c">C--------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">F0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">F1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">F2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">F3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">XX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">F1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="w">    </span><span class="n">F3</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">XXS</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="n">F1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">3.0</span><span class="o">*</span><span class="n">F3</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">XXSS</span><span class="w"> </span><span class="o">=</span><span class="w">               </span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">6.0</span><span class="o">*</span><span class="n">F3</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">XXS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XXS</span><span class="o">/</span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">XXSS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XXSS</span><span class="o">/</span><span class="n">DS</span><span class="o">**</span><span class="mi">2</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SEVALL</span>
+
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SEVLIN</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">XX</span><span class="p">,</span><span class="n">XXS</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C------------------------------------------------------------</span>
+<span class="c">C     Calculates X(SS) and dX/ds(SS) using piecewise-linear  |</span>
+<span class="c">C     interpolation. This is intended for intepolating very  |</span>
+<span class="c">C     noisy data for which a cubic spline is inappropriate.  |</span>
+<span class="c">C------------------------------------------------------------</span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="n">XX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">XXS</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SEVLIN</span>
+
+
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">CURV</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">YS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     Calculates curvature of splined 2-D curve |</span>
+<span class="c">C     at S = SS                                 |</span>
+<span class="c">C                                               |</span>
+<span class="c">C     S        arc length array of curve        |</span>
+<span class="c">C     X, Y     coordinate arrays of curve       |</span>
+<span class="c">C     XS,YS    derivative arrays                |</span>
+<span class="c">C              (calculated earlier by SPLINE)   |</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     </span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">F1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">F2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">F3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">XD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">3.0</span><span class="o">*</span><span class="n">F3</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">XDD</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">6.0</span><span class="o">*</span><span class="n">F3</span>
+<span class="c">C</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">G1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">G2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">G3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">YD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">G2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">3.0</span><span class="o">*</span><span class="n">G3</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">YDD</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="mf">2.0</span><span class="o">*</span><span class="n">G2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">6.0</span><span class="o">*</span><span class="n">G3</span>
+<span class="c">C</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">CURV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XD</span><span class="o">*</span><span class="n">YDD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">XDD</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">((</span><span class="n">XD</span><span class="o">*</span><span class="n">XD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">YD</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! CURV</span>
+
+
+<span class="nl">     </span> <span class="k">FUNCTION </span><span class="n">CURVS</span><span class="p">(</span><span class="n">SS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">YS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     Calculates curvature derivative of        |</span>
+<span class="c">C     splined 2-D curve at S = SS               |</span>
+<span class="c">C                                               |</span>
+<span class="c">C     S        arc length array of curve        |</span>
+<span class="c">C     X, Y     coordinate arrays of curve       |</span>
+<span class="c">C     XS,YS    derivative arrays                |</span>
+<span class="c">C              (calculated earlier by SPLINE)   |</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     </span>
+<span class="nl">     </span> <span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span>
+<span class="c">C</span>
+<span class="nl">   10</span> <span class="k">IF</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="n">ILOW</span><span class="w"> </span><span class="p">.</span><span class="n">LE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">IMID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">ILOW</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">IMID</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ELSE</span>
+<span class="nl">     </span> <span class="w"> </span><span class="n">ILOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IMID</span>
+<span class="nl">     </span> <span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">10</span>
+<span class="c">C</span>
+<span class="nl">   11</span> <span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">CX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">XD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">4.0</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">CX2</span>
+<span class="nl">     </span> <span class="n">XDD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">6.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">4.0</span><span class="p">)</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">6.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">CX2</span>
+<span class="nl">     </span> <span class="n">XDDD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.0</span><span class="o">*</span><span class="n">CX1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">6.0</span><span class="o">*</span><span class="n">CX2</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">CY1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">CY2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">YD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">4.0</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">CY1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">CY2</span>
+<span class="nl">     </span> <span class="n">YDD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">6.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">4.0</span><span class="p">)</span><span class="o">*</span><span class="n">CY1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">6.0</span><span class="o">*</span><span class="n">T</span><span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">CY2</span>
+<span class="nl">     </span> <span class="n">YDDD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.0</span><span class="o">*</span><span class="n">CY1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">6.0</span><span class="o">*</span><span class="n">CY2</span>
+<span class="c">C</span>
+
+
+<span class="nl">     </span> <span class="n">F1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">F2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">F3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">XD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">3.0</span><span class="o">*</span><span class="n">F3</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">XDD</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="mf">2.0</span><span class="o">*</span><span class="n">F2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">6.0</span><span class="o">*</span><span class="n">F3</span>
+<span class="nl">     </span> <span class="n">XDDD</span><span class="w"> </span><span class="o">=</span><span class="w">                  </span><span class="mf">6.0</span><span class="o">*</span><span class="n">F3</span>
+<span class="c">C</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">G1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DS</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">G2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="n">G3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DS</span><span class="o">*</span><span class="p">(</span><span class="w">    </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YS</span><span class="p">(</span><span class="n">I</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">YD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">G2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">3.0</span><span class="o">*</span><span class="n">G3</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">YDD</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="mf">2.0</span><span class="o">*</span><span class="n">G2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">T</span><span class="o">*</span><span class="mf">6.0</span><span class="o">*</span><span class="n">G3</span>
+<span class="nl">     </span> <span class="n">YDDD</span><span class="w"> </span><span class="o">=</span><span class="w">                  </span><span class="mf">6.0</span><span class="o">*</span><span class="n">G3</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">SQRTB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="n">XD</span><span class="o">*</span><span class="n">XD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">YD</span><span class="p">)</span>
+<span class="nl">     </span> <span class="n">BOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SQRTB</span><span class="o">**</span><span class="mi">3</span>
+<span class="nl">     </span> <span class="n">DBOTDT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="o">*</span><span class="n">SQRTB</span><span class="o">*</span><span class="p">(</span><span class="n">XD</span><span class="o">*</span><span class="n">XDD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">YDD</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">TOP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XD</span><span class="o">*</span><span class="n">YDD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">XDD</span><span class="w">      </span>
+<span class="nl">     </span> <span class="n">DTOPDT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XD</span><span class="o">*</span><span class="n">YDDD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">YD</span><span class="o">*</span><span class="n">XDDD</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">CURVS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DTOPDT</span><span class="o">*</span><span class="n">BOT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DBOTDT</span><span class="o">*</span><span class="n">TOP</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">BOT</span><span class="o">**</span><span class="mi">2</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="n">DS</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! CURVS</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SINVRT</span><span class="p">(</span><span class="n">SI</span><span class="p">,</span><span class="n">XI</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C----------------------------------------------------</span>
+<span class="c">C     Calculates the &quot;inverse&quot; spline function S(X). |</span>
+<span class="c">C     Since S(X) can be multi-valued or not defined, |</span>
+<span class="c">C      this is not a &quot;black-box&quot; routine.  The call- |</span>
+<span class="c">C      ing program must pass via SI a sufficiently   |</span>
+<span class="c">C      good initial guess for S(XI).                 |</span>
+<span class="c">C                                                    |</span>
+<span class="c">C     XI      specified X value       (input)        |</span>
+<span class="c">C     SI      calculated S(XI) value  (input,output) |</span>
+<span class="c">C     X,XS,S  usual spline arrays     (input)        |</span>
+<span class="c">C                                                    |</span>
+<span class="c">C----------------------------------------------------</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">10</span><span class="w"> </span><span class="n">ITER</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">CALL </span><span class="n">SEVALL</span><span class="p">(</span><span class="n">SI</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">XX</span><span class="p">,</span><span class="n">XXS</span><span class="p">,</span><span class="n">XXSS</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XI</span><span class="o">-</span><span class="n">XX</span><span class="p">)</span><span class="o">/</span><span class="n">XXS</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">SI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DS</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">DS</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="mf">1.0E-5</span><span class="p">)</span><span class="w"> </span><span class="k">RETURN</span>
+<span class="nl">   10</span> <span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="k">WRITE</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;SINVRT: spline inversion failed.  Continuing...&#39;</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SINVRT</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SCALC</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">Y</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C----------------------------------------</span>
+<span class="c">C     Calculates the arc length array S  |</span>
+<span class="c">C     for a 2-D array of points (X,Y).   |</span>
+<span class="c">C----------------------------------------</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">10</span><span class="w"> </span><span class="n">I</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">((</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">-</span><span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nl">   10</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SCALC</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SEGSPL</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     Splines X(S) array just like SPLINE,      |</span>
+<span class="c">C     but allows derivative discontinuities     |</span>
+<span class="c">C     at segment joints.  Segment joints are    |</span>
+<span class="c">C     defined by identical successive S values. |</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SEGSPL:  First input point duplicated&#39;</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SEGSPL:  Last  input point duplicated&#39;</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">ISEG0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">10</span><span class="w"> </span><span class="n">ISEG</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">NSEG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ISEG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">CALL </span><span class="n">SPLINE</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">NSEG</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ISEG</span><span class="o">+</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="nl">   10</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">NSEG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="k">CALL </span><span class="n">SPLINE</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">NSEG</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SEGSPL</span>
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">SEGSPD</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">XS</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">XS2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C     Splines X(S) array just like SPLIND,      |</span>
+<span class="c">C     but allows derivative discontinuities     |</span>
+<span class="c">C     at segment joints.  Segment joints are    |</span>
+<span class="c">C     defined by identical successive S values. |</span>
+<span class="c">C-----------------------------------------------</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SEGSPD:  First input point duplicated&#39;</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">STOP</span><span class="w"> </span><span class="s1">&#39;SEGSPD:  Last  input point duplicated&#39;</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">ISEG0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">10</span><span class="w"> </span><span class="n">ISEG</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="mi">2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG</span><span class="p">).</span><span class="n">EQ</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">NSEG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ISEG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">   </span><span class="k">CALL </span><span class="n">SPLIND</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">NSEG</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">XS2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">   </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ISEG</span><span class="o">+</span><span class="mi">1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">ENDIF</span>
+<span class="nl">   10</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">NSEG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ISEG0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="nl">     </span> <span class="k">CALL </span><span class="n">SPLIND</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">XS</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">ISEG0</span><span class="p">),</span><span class="n">NSEG</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">XS2</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! SEGSPD</span>
+
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">INTERS</span><span class="p">(</span><span class="n">OK</span><span class="p">,</span><span class="n">SS1</span><span class="p">,</span><span class="n">SS2</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                  </span><span class="n">X1</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">Y1</span><span class="p">,</span><span class="n">YS1</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N1</span><span class="p">,</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">                  </span><span class="n">X2</span><span class="p">,</span><span class="n">XS2</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span><span class="n">YS2</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N2</span><span class="w"> </span><span class="p">)</span>
+<span class="nl">     </span> <span class="kt">LOGICAL </span><span class="n">OK</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span><span class="n">XS1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span><span class="n">Y1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span><span class="n">YS1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span><span class="n">S1</span><span class="p">(</span><span class="n">N1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X2</span><span class="p">(</span><span class="n">N2</span><span class="p">),</span><span class="n">XS2</span><span class="p">(</span><span class="n">N2</span><span class="p">),</span><span class="n">Y2</span><span class="p">(</span><span class="n">N2</span><span class="p">),</span><span class="n">YS2</span><span class="p">(</span><span class="n">N2</span><span class="p">),</span><span class="n">S2</span><span class="p">(</span><span class="n">N2</span><span class="p">)</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="c">C     Finds spline coordinate values SS1, SS2 at the</span>
+<span class="c">C     intersection of two space curves (X1,Y1), (X2,Y2).</span>
+<span class="c">C-------------------------------------------------------</span>
+<span class="nl">     </span> <span class="kt">LOGICAL </span><span class="n">CLIP1</span><span class="p">,</span><span class="w"> </span><span class="n">CLIP2</span>
+<span class="nl">     </span> <span class="k">DATA </span><span class="n">EPS</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1.0E-5</span><span class="w"> </span><span class="o">/</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="n">OK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="c">ccc      SS1 = S1(1)</span>
+<span class="c">ccc      SS2 = S2(1)</span>
+<span class="nl">     </span> <span class="n">RS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0E12</span>
+<span class="nl">     </span> <span class="n">RS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0E12</span>
+<span class="nl">     </span> <span class="n">DS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="nl">     </span> <span class="n">DS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">1000</span><span class="w"> </span><span class="n">ITER</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RLX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">SS1OLD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SS1</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">SS2OLD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SS2</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RS1OLD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ABS</span><span class="p">(</span><span class="n">RS1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RS2OLD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ABS</span><span class="p">(</span><span class="n">RS2</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="mi">10</span><span class="w"> </span><span class="n">IRLX</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">CLIP1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">CLIP2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">SS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SS1OLD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RLX</span><span class="o">*</span><span class="n">DS1</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">SS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SS2OLD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RLX</span><span class="o">*</span><span class="n">DS2</span>
+<span class="c">C          </span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">IF</span><span class="p">(</span><span class="n">SS1</span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="n">S1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">OR</span><span class="p">.</span><span class="w"> </span><span class="n">SS1</span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="n">S1</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">CLIP1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">SS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAX</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">S1</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">))</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">SS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MIN</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">S1</span><span class="p">(</span><span class="n">N1</span><span class="p">))</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">ENDIF</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">IF</span><span class="p">(</span><span class="n">SS2</span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="n">S2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">OR</span><span class="p">.</span><span class="w"> </span><span class="n">SS2</span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="n">S2</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">CLIP2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">SS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAX</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">S2</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="p">))</span>
+<span class="nl">     </span> <span class="w">     </span><span class="n">SS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MIN</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">S2</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">ENDIF</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">XX1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEVAL</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">X1</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">XX2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEVAL</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">X2</span><span class="p">,</span><span class="n">XS2</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">YY1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEVAL</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">Y1</span><span class="p">,</span><span class="n">YS1</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">YY2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEVAL</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span><span class="n">YS2</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N2</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">RS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XX1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">XX2</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">RS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YY1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">YY2</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="k">IF</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">RS1</span><span class="p">).</span><span class="n">LT</span><span class="p">.</span><span class="n">RS1OLD</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">       </span><span class="nb">ABS</span><span class="p">(</span><span class="n">RS2</span><span class="p">).</span><span class="n">LT</span><span class="p">.</span><span class="n">RS2OLD</span><span class="w">     </span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">11</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">    </span><span class="n">RLX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">RLX</span>
+<span class="c">C</span>
+<span class="nl"> 10  </span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;INTERS: Under-relaxation loop failed.&#39;</span>
+<span class="nl"> 11  </span> <span class="w">  </span><span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A11</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DEVAL</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">X1</span><span class="p">,</span><span class="n">XS1</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DEVAL</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">X2</span><span class="p">,</span><span class="n">XS2</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N2</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A21</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">DEVAL</span><span class="p">(</span><span class="n">SS1</span><span class="p">,</span><span class="n">Y1</span><span class="p">,</span><span class="n">YS1</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N1</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">A22</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">DEVAL</span><span class="p">(</span><span class="n">SS2</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span><span class="n">YS2</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N2</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DET</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="n">A11</span><span class="o">*</span><span class="n">A22</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A12</span><span class="o">*</span><span class="n">A21</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DS1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="n">RS1</span><span class="o">*</span><span class="n">A22</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A12</span><span class="o">*</span><span class="n">RS2</span><span class="p">)</span><span class="o">/</span><span class="n">DET</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DS2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="n">A11</span><span class="o">*</span><span class="n">RS2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RS1</span><span class="o">*</span><span class="n">A21</span><span class="p">)</span><span class="o">/</span><span class="n">DET</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">DS1</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">EPS</span><span class="o">*</span><span class="p">(</span><span class="n">S1</span><span class="p">(</span><span class="n">N1</span><span class="p">)</span><span class="o">-</span><span class="n">S1</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">     </span><span class="nb">ABS</span><span class="p">(</span><span class="n">DS2</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">EPS</span><span class="o">*</span><span class="p">(</span><span class="n">S2</span><span class="p">(</span><span class="n">N2</span><span class="p">)</span><span class="o">-</span><span class="n">S2</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="k">RETURN</span>
+<span class="c">C</span>
+<span class="nl"> 1000</span> <span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;INTERS: Convergence failed. Res =&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">RS1</span><span class="p">,</span><span class="w"> </span><span class="n">RS2</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">CLIP1</span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w"> </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;        S1 clip:&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">S1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">S1</span><span class="p">(</span><span class="n">N1</span><span class="p">),</span><span class="w"> </span><span class="n">SS1</span><span class="p">,</span><span class="w"> </span><span class="n">DS1</span>
+<span class="nl">     </span> <span class="k">IF</span><span class="p">(</span><span class="n">CLIP2</span><span class="p">)</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w"> </span><span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;        S2 clip:&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">S2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">S2</span><span class="p">(</span><span class="n">N2</span><span class="p">),</span><span class="w"> </span><span class="n">SS2</span><span class="p">,</span><span class="w"> </span><span class="n">DS2</span>
+<span class="nl">     </span> <span class="n">OK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! INTERS</span>
+
+
+
+
+
+<span class="nl">     </span> <span class="k">SUBROUTINE </span><span class="n">NEARPT</span><span class="p">(</span><span class="n">XPNT</span><span class="p">,</span><span class="n">YPNT</span><span class="p">,</span><span class="n">SNEAR</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XP</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">YP</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">IMPLICIT </span><span class="kt">REAL</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+<span class="nl">     </span> <span class="k">DIMENSION </span><span class="n">X</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XP</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">Y</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">YP</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="c">C========================================================</span>
+<span class="c">C     Finds arc length position S=SNEAR of a point </span>
+<span class="c">C     on a 2-D splined curve X(S),Y(S) nearest the </span>
+<span class="c">C     specified point XPNT,YPNT.</span>
+<span class="c">C</span>
+<span class="c">C     Assumes the value passed in via SNEAR is a good </span>
+<span class="c">C     initial guess.</span>
+<span class="c">C========================================================</span>
+<span class="c">C</span>
+<span class="c">C---- convergence tolerance</span>
+<span class="nl">     </span> <span class="n">EPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0E-4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="c">C</span>
+<span class="c">C---- Newton iteration loop</span>
+<span class="nl">     </span> <span class="k">DO </span><span class="mi">215</span><span class="w"> </span><span class="n">IPASS</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">CALL </span><span class="n">SEVALL</span><span class="p">(</span><span class="n">SNEAR</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">XP</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">XXI</span><span class="p">,</span><span class="n">XPI</span><span class="p">,</span><span class="n">X2I</span><span class="p">)</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">CALL </span><span class="n">SEVALL</span><span class="p">(</span><span class="n">SNEAR</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">YP</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">YYI</span><span class="p">,</span><span class="n">YPI</span><span class="p">,</span><span class="n">Y2I</span><span class="p">)</span>
+<span class="c">C</span>
+<span class="c">C------ residual is dot product with curve tangent vector</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RES</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XXI</span><span class="o">-</span><span class="n">XPNT</span><span class="p">)</span><span class="o">*</span><span class="n">XPI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">YYI</span><span class="o">-</span><span class="n">YPNT</span><span class="p">)</span><span class="o">*</span><span class="n">YPI</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">RES_S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XPI</span><span class="w">     </span><span class="p">)</span><span class="o">*</span><span class="n">XPI</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">YPI</span><span class="w">     </span><span class="p">)</span><span class="o">*</span><span class="n">YPI</span>
+<span class="nl">     </span><span class="gs">&amp;</span><span class="w">        </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">XXI</span><span class="o">-</span><span class="n">XPNT</span><span class="p">)</span><span class="o">*</span><span class="n">X2I</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">YYI</span><span class="o">-</span><span class="n">YPNT</span><span class="p">)</span><span class="o">*</span><span class="n">Y2I</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">DSN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">RES</span><span class="o">/</span><span class="n">RES_S</span>
+<span class="nl">     </span> <span class="w">  </span><span class="n">SNEAR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SNEAR</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DSN</span>
+<span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="p">(</span><span class="nb">ABS</span><span class="p">(</span><span class="n">DSN</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="n">EPS</span><span class="p">)</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="mi">216</span>
+<span class="c">C</span>
+<span class="nl">  215</span> <span class="k">CONTINUE</span>
+<span class="nl">     </span> <span class="k">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;NEARPT: Convergence failed.  Continuing...&#39;</span>
+<span class="nl">  216</span> <span class="k">CONTINUE</span>
+<span class="c">C</span>
+<span class="nl">     </span> <span class="k">RETURN</span>
+<span class="nl">     </span> <span class="k">END</span><span class="w"> </span><span class="c">! NEARPT</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./qprop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gvcalc_f.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">gvcalc.f</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="io_f.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">io.f</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roie R. Black
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
